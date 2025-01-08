@@ -1,3 +1,3 @@
 # MiniNT
 
-Modification for Windows PE
+The template branch is for new directories
