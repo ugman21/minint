@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<diagrules xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaversion="2">
+  <scenarios>
+    <scenario schemaversion="2" scenarioid="{0557bdd4-ca96-4faf-9678-d306ac623ef1}" scenarioname="PctSettingsDialogWithoutVisibleErrorMsg" measureid="37788688" measureversion="2" measureversionguid="{e27e2ac8-f4e6-4b03-8923-29be7114cbe5}" maxinflightinstances="1" maxdurationms="180000" maxcompletionescalations="1" matchbehavior="newest">
+      <triggers>
+        <trigger triggername="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch">
+          <etwtrigger>
+            <provider>{B7AFA6AF-AAAB-4F50-B7DC-B61D4DDBE34F}</provider>
+            <keywords>0x400000000000</keywords>
+            <level>5</level>
+          </etwtrigger>
+        </trigger>
+        <trigger triggername="Microsoft.Windows.Update.Ux.MusUpdateSettings.MusPayloadErrorDisplayed">
+          <etwtrigger>
+            <provider>{cee50f59-e321-4691-9bb7-9b75494f6aab}</provider>
+            <keywords>0x400000000000</keywords>
+            <level>5</level>
+          </etwtrigger>
+        </trigger>
+        <trigger triggername="Microsoft.Windows.Update.Ux.MusUpdateSettings.DownloadFailedMessageDisplayed">
+          <etwtrigger>
+            <provider>{cee50f59-e321-4691-9bb7-9b75494f6aab}</provider>
+            <keywords>0x400000000000</keywords>
+            <level>5</level>
+          </etwtrigger>
+        </trigger>
+        <trigger triggername="Microsoft.Windows.Update.Ux.MusUpdateSettings.InstallFailedMessageDisplayed">
+          <etwtrigger>
+            <provider>{cee50f59-e321-4691-9bb7-9b75494f6aab}</provider>
+            <keywords>0x400000000000</keywords>
+            <level>5</level>
+          </etwtrigger>
+        </trigger>
+        <trigger triggername="Microsoft.Windows.Update.Ux.MusUpdateSettings.ServiceUnavailableMessageDisplayed">
+          <etwtrigger>
+            <provider>{cee50f59-e321-4691-9bb7-9b75494f6aab}</provider>
+            <keywords>0x400000000000</keywords>
+            <level>5</level>
+          </etwtrigger>
+        </trigger>
+        <trigger triggername="Microsoft.Windows.Update.Ux.MusUpdateSettings.UsoLastErrorUxDisplayed">
+          <etwtrigger>
+            <provider>{cee50f59-e321-4691-9bb7-9b75494f6aab}</provider>
+            <keywords>0x400000000000</keywords>
+            <level>5</level>
+          </etwtrigger>
+        </trigger>
+        <trigger triggername="Microsoft.Windows.Update.Ux.MusUpdateSettings.McsRestartNowFailed">
+          <etwtrigger>
+            <provider>{cee50f59-e321-4691-9bb7-9b75494f6aab}</provider>
+            <keywords>0x400000000000</keywords>
+            <level>5</level>
+          </etwtrigger>
+        </trigger>
+        <trigger triggername="Microsoft.Windows.Update.Ux.MusUpdateSettings.RestartNowFailed">
+          <etwtrigger>
+            <provider>{cee50f59-e321-4691-9bb7-9b75494f6aab}</provider>
+            <keywords>0x400000000000</keywords>
+            <level>5</level>
+          </etwtrigger>
+        </trigger>
+        <trigger triggername="Microsoft.Windows.Update.Ux.MusUpdateSettings.SihUpdateRestartNowFailed">
+          <etwtrigger>
+            <provider>{cee50f59-e321-4691-9bb7-9b75494f6aab}</provider>
+            <keywords>0x400000000000</keywords>
+            <level>5</level>
+          </etwtrigger>
+        </trigger>
+        <trigger triggername="TimeoutOnSettingsLaunchErrorNotSeen">
+          <timetrigger>
+            <durationms>120000</durationms>
+          </timetrigger>
+        </trigger>
+      </triggers>
+      <telemetryevents>
+        <telemetryevent id="LaunchSuccessEventId">
+          <derivedevent>
+            <measurevalue>1</measurevalue>
+            <attribute name="TransitionName">$(T1,_eventname)</attribute>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+        <telemetryevent id="T2_LaunchFailureEventId">
+          <derivedevent>
+            <measurevalue>0</measurevalue>
+            <attribute name="TransitionName">$(T2,_eventname)</attribute>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+        <telemetryevent id="T3_LaunchFailureEventId">
+          <derivedevent>
+            <measurevalue>0</measurevalue>
+            <attribute name="TransitionName">$(T3,_eventname)</attribute>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+        <telemetryevent id="T4_LaunchFailureEventId">
+          <derivedevent>
+            <measurevalue>0</measurevalue>
+            <attribute name="TransitionName">$(T4,_eventname)</attribute>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+        <telemetryevent id="T5_LaunchFailureEventId">
+          <derivedevent>
+            <measurevalue>0</measurevalue>
+            <attribute name="TransitionName">$(T5,_eventname)</attribute>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+        <telemetryevent id="T6_LaunchFailureEventId">
+          <derivedevent>
+            <measurevalue>0</measurevalue>
+            <attribute name="TransitionName">$(T6,_eventname)</attribute>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+        <telemetryevent id="T7_LaunchFailureEventId">
+          <derivedevent>
+            <measurevalue>0</measurevalue>
+            <attribute name="TransitionName">$(T7,_eventname)</attribute>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+        <telemetryevent id="T8_LaunchFailureEventId">
+          <derivedevent>
+            <measurevalue>0</measurevalue>
+            <attribute name="TransitionName">$(T8,_eventname)</attribute>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+        <telemetryevent id="T9_LaunchFailureEventId">
+          <derivedevent>
+            <measurevalue>0</measurevalue>
+            <attribute name="TransitionName">$(T9,_eventname)</attribute>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+      </telemetryevents>
+      <filters>
+        <filter appliesto="trigger" filtername="OpcodeEquals1">
+          <singletriggerpropertyfilter>
+            <triggername>Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch</triggername>
+            <propertyselector>
+              <propertykey>
+                <name>_opcode</name>
+              </propertykey>
+            </propertyselector>
+            <operation>equal</operation>
+            <value>1</value>
+          </singletriggerpropertyfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="OpcodeEquals2">
+          <singletriggerpropertyfilter>
+            <triggername>Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch</triggername>
+            <propertyselector>
+              <propertykey>
+                <name>_opcode</name>
+              </propertykey>
+            </propertyselector>
+            <operation>equal</operation>
+            <value>2</value>
+          </singletriggerpropertyfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T0_PageIdIsSettingsPageRestoreMusUpdate">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="string" name="T0.pageId" />
+            </assign>
+            <return>
+              <equal>
+                <var name="V0" />
+                <const type="string" value="SettingsPageRestoreMusUpdate" />
+              </equal>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T1_PageIdIsSettingsPageRestoreMusUpdate">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="string" name="T1.pageId" />
+            </assign>
+            <return>
+              <equal>
+                <var name="V0" />
+                <const type="string" value="SettingsPageRestoreMusUpdate" />
+              </equal>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T1T0ActivityIdMatch">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="int" name="T0._aid" />
+            </assign>
+            <assign>
+              <var name="V1" />
+              <transition type="int" name="T1._aid" />
+            </assign>
+            <return>
+              <equal>
+                <var name="V0" />
+                <var name="V1" />
+              </equal>
+            </return>
+          </scriptfilter>
+        </filter>
+      </filters>
+      <scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" datamodel="custom" initial="_start">
+        <state id="_start">
+          <transition event="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch" target="1" name="T0">
+            <filter>OpcodeEquals1</filter>
+            <filter>T0_PageIdIsSettingsPageRestoreMusUpdate</filter>
+          </transition>
+        </state>
+        <state id="1">
+          <transition event="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch" target="_complete" name="T1">
+            <filter>OpcodeEquals2</filter>
+            <filter>T1_PageIdIsSettingsPageRestoreMusUpdate</filter>
+            <filter>T1T0ActivityIdMatch</filter>
+            <telemetryeventid>LaunchSuccessEventId</telemetryeventid>
+          </transition>
+          <transition event="Microsoft.Windows.Update.Ux.MusUpdateSettings.MusPayloadErrorDisplayed" target="_fail" name="T2">
+            <telemetryeventid>T2_LaunchFailureEventId</telemetryeventid>
+          </transition>
+          <transition event="Microsoft.Windows.Update.Ux.MusUpdateSettings.DownloadFailedMessageDisplayed" target="_fail" name="T3">
+            <telemetryeventid>T3_LaunchFailureEventId</telemetryeventid>
+          </transition>
+          <transition event="Microsoft.Windows.Update.Ux.MusUpdateSettings.InstallFailedMessageDisplayed" target="_fail" name="T4">
+            <telemetryeventid>T4_LaunchFailureEventId</telemetryeventid>
+          </transition>
+          <transition event="Microsoft.Windows.Update.Ux.MusUpdateSettings.ServiceUnavailableMessageDisplayed" target="_fail" name="T5">
+            <telemetryeventid>T5_LaunchFailureEventId</telemetryeventid>
+          </transition>
+          <transition event="Microsoft.Windows.Update.Ux.MusUpdateSettings.UsoLastErrorUxDisplayed" target="_fail" name="T6">
+            <telemetryeventid>T6_LaunchFailureEventId</telemetryeventid>
+          </transition>
+          <transition event="Microsoft.Windows.Update.Ux.MusUpdateSettings.McsRestartNowFailed" target="_fail" name="T7">
+            <telemetryeventid>T7_LaunchFailureEventId</telemetryeventid>
+          </transition>
+          <transition event="Microsoft.Windows.Update.Ux.MusUpdateSettings.RestartNowFailed" target="_fail" name="T8">
+            <telemetryeventid>T8_LaunchFailureEventId</telemetryeventid>
+          </transition>
+          <transition event="Microsoft.Windows.Update.Ux.MusUpdateSettings.SihUpdateRestartNowFailed" target="_fail" name="T9">
+            <telemetryeventid>T9_LaunchFailureEventId</telemetryeventid>
+          </transition>
+          <transition event="TimeoutOnSettingsLaunchErrorNotSeen" target="_complete" name="T10" />
+        </state>
+        <final id="_cancel" />
+        <final id="_fail" />
+        <final id="_complete" />
+      </scxml>
+    </scenario>
+    <scenario schemaversion="2" scenarioid="{7d1cf3b2-60b0-47ab-945b-983ba269c597}" scenarioname="PctSuccessLaunchWuSettingsPage" measureid="37788724" measureversion="2" measureversionguid="{7198ae99-07e6-4235-9f27-06f9a2c65a11}" maxinflightinstances="1" maxdurationms="240000" matchbehavior="newest">
+      <triggers>
+        <trigger triggername="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch">
+          <etwtrigger>
+            <provider>{B7AFA6AF-AAAB-4F50-B7DC-B61D4DDBE34F}</provider>
+            <keywords>0x400000000000</keywords>
+            <level>5</level>
+          </etwtrigger>
+        </trigger>
+        <trigger triggername="TimeoutOnSettingsLaunchSuccessNotSeen">
+          <timetrigger>
+            <durationms>180000</durationms>
+          </timetrigger>
+        </trigger>
+      </triggers>
+      <telemetryevents>
+        <telemetryevent id="LaunchSuccessEventId">
+          <derivedevent>
+            <eventname>DerivedTelemetryEvent.MeasureValueEmitted_0</eventname>
+            <measurevalue>1</measurevalue>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+        <telemetryevent id="LaunchFailureEventId">
+          <derivedevent>
+            <eventname>DerivedTelemetryEvent.MeasureValueEmitted_0</eventname>
+            <measurevalue>0</measurevalue>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+      </telemetryevents>
+      <filters>
+        <filter appliesto="trigger" filtername="OpcodeEquals1">
+          <singletriggerpropertyfilter>
+            <triggername>Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch</triggername>
+            <propertyselector>
+              <propertykey>
+                <name>_opcode</name>
+              </propertykey>
+            </propertyselector>
+            <operation>equal</operation>
+            <value>1</value>
+          </singletriggerpropertyfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="OpcodeEquals2">
+          <singletriggerpropertyfilter>
+            <triggername>Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch</triggername>
+            <propertyselector>
+              <propertykey>
+                <name>_opcode</name>
+              </propertykey>
+            </propertyselector>
+            <operation>equal</operation>
+            <value>2</value>
+          </singletriggerpropertyfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T2_WilActivityHresultUnhandledException">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="int" name="T2.wilActivity.hresult" />
+            </assign>
+            <return>
+              <equal>
+                <var name="V0" />
+                <const type="int" value="2147942974" />
+              </equal>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T3_WilActivityHresult_Not_UnhandledException">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="int" name="T3.wilActivity.hresult" />
+            </assign>
+            <return>
+              <notequal>
+                <var name="V0" />
+                <const type="int" value="2147942974" />
+              </notequal>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T1_WilActivityZeroHresult">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="int" name="T1.wilActivity.hresult" />
+            </assign>
+            <return>
+              <equal>
+                <var name="V0" />
+                <const type="int" value="0" />
+              </equal>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T3_WilActivityNonZeroHresult">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="int" name="T3.wilActivity.hresult" />
+            </assign>
+            <return>
+              <notequal>
+                <var name="V0" />
+                <const type="int" value="0" />
+              </notequal>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T0T1_WilActivityThreadIdMatch">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="int" name="T0.wilActivity.threadId" />
+            </assign>
+            <assign>
+              <var name="V1" />
+              <transition type="int" name="T1.wilActivity.threadId" />
+            </assign>
+            <return>
+              <equal>
+                <var name="V0" />
+                <var name="V1" />
+              </equal>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T3T0_WilActivityThreadIdMatch">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="int" name="T3.wilActivity.threadId" />
+            </assign>
+            <assign>
+              <var name="V1" />
+              <transition type="int" name="T0.wilActivity.threadId" />
+            </assign>
+            <return>
+              <equal>
+                <var name="V0" />
+                <var name="V1" />
+              </equal>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T0_PageIdIsSettingsPageRestoreMusUpdate">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="string" name="T0.pageId" />
+            </assign>
+            <return>
+              <or>
+                <equal>
+                  <var name="V0" />
+                  <const type="string" value="SettingsPageRestoreMusUpdate" />
+                </equal>
+                <equal>
+                  <var name="V0" />
+                  <const type="string" value="SettingsPageRestoreMusUpdate2" />
+                </equal>
+              </or>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T1_PageIdIsSettingsPageRestoreMusUpdate">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="string" name="T1.pageId" />
+            </assign>
+            <return>
+              <or>
+                <equal>
+                  <var name="V0" />
+                  <const type="string" value="SettingsPageRestoreMusUpdate" />
+                </equal>
+                <equal>
+                  <var name="V0" />
+                  <const type="string" value="SettingsPageRestoreMusUpdate2" />
+                </equal>
+              </or>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T3_PageIdIsSettingsPageRestoreMusUpdate">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="string" name="T3.pageId" />
+            </assign>
+            <return>
+              <or>
+                <equal>
+                  <var name="V0" />
+                  <const type="string" value="SettingsPageRestoreMusUpdate" />
+                </equal>
+                <equal>
+                  <var name="V0" />
+                  <const type="string" value="SettingsPageRestoreMusUpdate2" />
+                </equal>
+              </or>
+            </return>
+          </scriptfilter>
+        </filter>
+      </filters>
+      <scxml version="1.0" datamodel="custom" initial="_start" xmlns="http://www.w3.org/2005/07/scxml">
+        <state id="_start">
+          <transition event="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch" target="1" name="T0">
+            <filter>OpcodeEquals1</filter>
+            <filter>T0_PageIdIsSettingsPageRestoreMusUpdate</filter>
+          </transition>
+        </state>
+        <state id="1">
+          <transition event="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch" target="_complete" name="T1">
+            <filter>OpcodeEquals2</filter>
+            <filter>T1_WilActivityZeroHresult</filter>
+            <filter>T0T1_WilActivityThreadIdMatch</filter>
+            <filter>T1_PageIdIsSettingsPageRestoreMusUpdate</filter>
+            <telemetryeventid>LaunchSuccessEventId</telemetryeventid>
+          </transition>
+          <transition event="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch" target="_cancel" name="T2">
+            <filter>OpcodeEquals2</filter>
+            <filter>T2_WilActivityHresultUnhandledException</filter>
+          </transition>
+          <transition event="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch" target="_fail" name="T3">
+            <filter>OpcodeEquals2</filter>
+            <filter>T3_WilActivityNonZeroHresult</filter>
+            <filter>T3_WilActivityHresult_Not_UnhandledException</filter>
+            <filter>T3T0_WilActivityThreadIdMatch</filter>
+            <filter>T3_PageIdIsSettingsPageRestoreMusUpdate</filter>
+            <telemetryeventid>LaunchFailureEventId</telemetryeventid>
+          </transition>
+          <transition event="TimeoutOnSettingsLaunchSuccessNotSeen" target="_cancel" name="T4" />
+        </state>
+        <final id="_cancel" />
+        <final id="_fail" />
+        <final id="_complete" />
+      </scxml>
+    </scenario>
+    <scenario schemaversion="2" scenarioid="{b54e65ba-02ba-45e8-83ce-42f128b73988}" scenarioname="TimeTakenToLaunchWUSettingsPage" measureid="37930585" measureversion="2" measureversionguid="{885ee0cd-c448-4bfa-bcf3-90018d57acd3}" maxinflightinstances="1" maxdurationms="120000" matchbehavior="newest">
+      <triggers>
+        <trigger triggername="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch">
+          <etwtrigger>
+            <provider>{B7AFA6AF-AAAB-4F50-B7DC-B61D4DDBE34F}</provider>
+            <keywords>0x400000000000</keywords>
+            <level>5</level>
+          </etwtrigger>
+        </trigger>
+        <trigger triggername="TimeoutOnSettingsLaunchNotSeen">
+          <timetrigger>
+            <durationms>60000</durationms>
+          </timetrigger>
+        </trigger>
+      </triggers>
+      <telemetryevents>
+        <telemetryevent id="SettingsPageLaunchSuccessId">
+          <derivedevent>
+            <measurevalue>$(_currentTransition,_timeSinceScenarioStart)</measurevalue>
+            <telemetrycategory>measures</telemetrycategory>
+            <privacydatatag>PDT_ProductAndServiceUsage,PDT_ProductAndServicePerformance</privacydatatag>
+          </derivedevent>
+        </telemetryevent>
+      </telemetryevents>
+      <filters>
+        <filter appliesto="trigger" filtername="OpcodeEquals1">
+          <singletriggerpropertyfilter>
+            <triggername>Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch</triggername>
+            <propertyselector>
+              <propertykey>
+                <name>_opcode</name>
+              </propertykey>
+            </propertyselector>
+            <operation>equal</operation>
+            <value>1</value>
+          </singletriggerpropertyfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="OpcodeEquals2">
+          <singletriggerpropertyfilter>
+            <triggername>Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch</triggername>
+            <propertyselector>
+              <propertykey>
+                <name>_opcode</name>
+              </propertykey>
+            </propertyselector>
+            <operation>equal</operation>
+            <value>2</value>
+          </singletriggerpropertyfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T0_PageIdIsSettingsPageRestoreMusUpdate">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="string" name="T0.pageId" />
+            </assign>
+            <return>
+              <or>
+                <equal>
+                  <var name="V0" />
+                  <const type="string" value="SettingsPageRestoreMusUpdate" />
+                </equal>
+                <equal>
+                  <var name="V0" />
+                  <const type="string" value="SettingsPageRestoreMusUpdate2" />
+                </equal>
+              </or>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T1_PageIdIsSettingsPageRestoreMusUpdate">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="string" name="T1.pageId" />
+            </assign>
+            <return>
+              <or>
+                <equal>
+                  <var name="V0" />
+                  <const type="string" value="SettingsPageRestoreMusUpdate" />
+                </equal>
+                <equal>
+                  <var name="V0" />
+                  <const type="string" value="SettingsPageRestoreMusUpdate2" />
+                </equal>
+              </or>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T1T0_WilActivityThreadIdMatch">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="int" name="T0.wilActivity.threadId" />
+            </assign>
+            <assign>
+              <var name="V1" />
+              <transition type="int" name="T1.wilActivity.threadId" />
+            </assign>
+            <return>
+              <equal>
+                <var name="V0" />
+                <var name="V1" />
+              </equal>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T2T0_WilActivityThreadIdMatch">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="int" name="T2.wilActivity.threadId" />
+            </assign>
+            <assign>
+              <var name="V1" />
+              <transition type="int" name="T0.wilActivity.threadId" />
+            </assign>
+            <return>
+              <equal>
+                <var name="V0" />
+                <var name="V1" />
+              </equal>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T1_WilActivityZeroHresult">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="int" name="T1.wilActivity.hresult" />
+            </assign>
+            <return>
+              <equal>
+                <var name="V0" />
+                <const type="int" value="0" />
+              </equal>
+            </return>
+          </scriptfilter>
+        </filter>
+        <filter appliesto="trigger" filtername="T2_WilActivityHresultUnhandledException">
+          <scriptfilter version="1" file="false" service="false" registry="false">
+            <assign>
+              <var name="V0" />
+              <transition type="int" name="T2.wilActivity.hresult" />
+            </assign>
+            <return>
+              <equal>
+                <var name="V0" />
+                <const type="int" value="2147942974" />
+              </equal>
+            </return>
+          </scriptfilter>
+        </filter>
+      </filters>
+      <scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" datamodel="custom" initial="_start">
+        <state id="_start">
+          <transition event="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch" target="1" name="T0">
+            <filter>OpcodeEquals1</filter>
+            <filter>T0_PageIdIsSettingsPageRestoreMusUpdate</filter>
+          </transition>
+        </state>
+        <state id="1">
+          <transition event="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch" target="_complete" name="T1">
+            <filter>OpcodeEquals2</filter>
+            <filter>T1_WilActivityZeroHresult</filter>
+            <filter>T1_PageIdIsSettingsPageRestoreMusUpdate</filter>
+            <filter>T1T0_WilActivityThreadIdMatch</filter>
+            <telemetryeventid>SettingsPageLaunchSuccessId</telemetryeventid>
+          </transition>
+          <transition event="Microsoft.Windows.Shell.SystemSettings.SettingsAppActivity.SettingsAppPageLaunch" target="_cancel" name="T2">
+            <filter>OpcodeEquals2</filter>
+            <filter>T2_WilActivityHresultUnhandledException</filter>
+            <filter>T2T0_WilActivityThreadIdMatch</filter>
+          </transition>
+          <transition event="TimeoutOnSettingsLaunchNotSeen" target="_cancel" name="T3" />
+        </state>
+        <final id="_cancel" />
+        <final id="_fail" />
+        <final id="_complete" />
+      </scxml>
+    </scenario>
+  </scenarios>
+</diagrules>

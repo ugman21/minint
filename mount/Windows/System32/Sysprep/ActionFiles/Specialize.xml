@@ -1,0 +1,39 @@
+<sysprepInformation><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-Cryptography" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="wow64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x1100"></sysprepOrder>
+<sysprepModule methodName="CryptoSysPrep_Specialize" moduleName="$(runtime.windows)\system32\capisp.dll"></sysprepModule>
+<sysprepModule methodName="CryptoSysPrep_Specialize_Offline" moduleName="$(runtime.windows)\system32\capisp.dll" moduleType="offline"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-Syssetup" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="wow64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0580"></sysprepOrder>
+<sysprepModule methodName="Sysprep_Specialize_Pnp_Compat" moduleName="$(runtime.system32)\syssetup.dll"></sysprepModule>
+<sysprepModule methodName="Sysprep_Specialize_Offline_Pnp_Compat" moduleName="$(runtime.system32)\syssetup.dll" moduleType="offline"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-Cryptography" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x1100"></sysprepOrder>
+<sysprepModule methodName="CryptoSysPrep_Specialize" moduleName="$(runtime.windows)\system32\capisp.dll"></sysprepModule>
+<sysprepModule methodName="CryptoSysPrep_Specialize_Offline" moduleName="$(runtime.windows)\system32\capisp.dll" moduleType="offline"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-Syssetup" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0580"></sysprepOrder>
+<sysprepModule methodName="Sysprep_Specialize_Pnp_Compat" moduleName="$(runtime.system32)\syssetup.dll"></sysprepModule>
+<sysprepModule methodName="Sysprep_Specialize_Offline_Pnp_Compat" moduleName="$(runtime.system32)\syssetup.dll" moduleType="offline"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-Security-Security Configuration Engine Client" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0600"></sysprepOrder>
+<sysprepModule methodName="SceSysPrep" moduleName="$(runtime.system32)\scecli.dll" moduleType="online"></sysprepModule>
+<sysprepModule methodName="SceSysPrepOffline" moduleName="$(runtime.system32)\scecli.dll" moduleType="offline"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-ServicingStack" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x1c00"></sysprepOrder>
+<registryActions>
+<deleteValue name="DecompressOverride" path="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide"></deleteValue></registryActions></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-WofUtil" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="wow64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0080"></sysprepOrder>
+<registryActions>
+<deleteValue name="SystemPolicy" path="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WOF"></deleteValue>
+<deleteValue name="EffectiveFlags" path="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WOF"></deleteValue></registryActions></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-ReFS-Sysprep" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x1f00"></sysprepOrder>
+<sysprepModule methodName="Sysprep_Specialize_ReFS_Online" moduleName="$(runtime.system32)\sprefs.dll" moduleType="online"></sysprepModule>
+<sysprepModule methodName="Sysprep_Specialize_ReFS_Offline" moduleName="$(runtime.system32)\sprefs.dll" moduleType="offline"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-WofUtil" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0080"></sysprepOrder>
+<registryActions>
+<deleteValue name="SystemPolicy" path="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WOF"></deleteValue>
+<deleteValue name="EffectiveFlags" path="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\WOF"></deleteValue></registryActions></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-TerminalServices-LocalSessionManager" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0800"></sysprepOrder>
+<sysprepModule methodName="LSMSysPrepRestoreOffline" moduleName="$(runtime.system32)\setup\tssysprep.dll" moduleType="offline"></sysprepModule>
+<sysprepModule methodName="LSMSysPrepRestoreOnline" moduleName="$(runtime.system32)\setup\tssysprep.dll" moduleType="online"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-ServicingStack" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="x86" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x1c00"></sysprepOrder>
+<registryActions>
+<deleteValue name="DecompressOverride" path="HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SideBySide"></deleteValue></registryActions></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-PnpSysprep" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0500"></sysprepOrder>
+<sysprepModule methodName="Sysprep_Specialize_Pnp" moduleName="$(runtime.system32)\sppnp.dll"></sysprepModule>
+<sysprepModule methodName="Sysprep_Specialize_Offline_Pnp" moduleName="$(runtime.system32)\sppnp.dll" moduleType="offline"></sysprepModule></imaging></sysprepInformation>

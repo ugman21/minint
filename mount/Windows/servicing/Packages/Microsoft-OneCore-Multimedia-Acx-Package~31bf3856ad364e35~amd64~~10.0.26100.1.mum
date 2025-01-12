@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v3" manifestVersion="1.0" copyright="Copyright (c) Microsoft Corporation. All Rights Reserved.">
+  <assemblyIdentity name="Microsoft-OneCore-Multimedia-Acx-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+  <package identifier="Microsoft-OneCore-Multimedia-Acx" releaseType="Feature Pack">
+    <update name="b8807200bdaf1b5cc4b8d05cb8eb0a6d">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-OneCore-Multimedia-Acx-merged-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+    <update name="89626fe44a30bef944d6079e965d1c5c">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-OneCore-Multimedia-Apx-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+  </package>
+</assembly>

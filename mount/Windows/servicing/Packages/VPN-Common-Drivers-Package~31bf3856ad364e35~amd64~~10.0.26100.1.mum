@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v3" manifestVersion="1.0" copyright="Copyright (c) Microsoft Corporation. All Rights Reserved.">
+  <assemblyIdentity name="VPN-Common-Drivers-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+  <package identifier="VPN-Common-Drivers" releaseType="Feature Pack">
+    <update name="afc295807e3c27ab4041486428ba3e45" restart="required">
+      <driver inf="netavpna.inf" ranking="normal">
+        <assemblyIdentity name="dual_netavpna.inf" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS" type="dualModeDriver" />
+      </driver>
+    </update>
+    <update name="94bf05ad73c7c15854db74c3b42926fb" restart="required">
+      <driver inf="netsstpa.inf" ranking="normal">
+        <assemblyIdentity name="dual_netsstpa.inf" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS" type="dualModeDriver" />
+      </driver>
+    </update>
+    <update name="631da101f0a4df757dea42b5b828ee8e" restart="required">
+      <driver inf="netrasa.inf" ranking="normal">
+        <assemblyIdentity name="dual_netrasa.inf" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS" type="dualModeDriver" />
+      </driver>
+    </update>
+    <update name="354ab6bb8c16ee2aeff710e6c731cc9e" restart="required">
+      <driver inf="netrast.inf" ranking="normal">
+        <assemblyIdentity name="dual_netrast.inf" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" versionScope="nonSxS" type="dualModeDriver" />
+      </driver>
+    </update>
+  </package>
+</assembly>

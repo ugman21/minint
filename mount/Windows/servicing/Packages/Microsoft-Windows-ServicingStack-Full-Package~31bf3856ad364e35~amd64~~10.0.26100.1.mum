@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v3" manifestVersion="1.0" copyright="Copyright (c) Microsoft Corporation. All Rights Reserved.">
+  <assemblyIdentity name="Microsoft-Windows-ServicingStack-Full-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+  <package identifier="Microsoft-Windows-ServicingStack-Full" releaseType="Feature Pack">
+    <update name="9ff60bd1e59b2fd6d7bbab714579c84f">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-Windows-ServicingStack-Core-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+    <update name="ec81be8142291d1b40d2d6aa1ac13492">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-Windows-ServicingStack-Core-CrossArch-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+    <update name="1129adec67a0b63bf2d97ad5b9eebd9f">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-Windows-ServicingStack-Extra-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+    <update name="f5678421200444466d6c288d465fbb34">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-Windows-ServicingStack-Extra-CrossArch-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+  </package>
+</assembly>

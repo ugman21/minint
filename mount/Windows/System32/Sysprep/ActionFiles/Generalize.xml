@@ -1,0 +1,28 @@
+<sysprepInformation><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-Cryptography" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="wow64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x1E00"></sysprepOrder>
+<sysprepModule methodName="CAPISysPrep_Generalize" moduleName="$(runtime.windows)\system32\capisp.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-Cryptography" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x1E00"></sysprepOrder>
+<sysprepModule methodName="CAPISysPrep_Generalize" moduleName="$(runtime.windows)\system32\capisp.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-ErrorReportingCore" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="wow64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x1100"></sysprepOrder>
+<sysprepModule methodName="WerSysprepGeneralize" moduleName="wer.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-ErrorReportingCore" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x1100"></sysprepOrder>
+<sysprepModule methodName="WerSysprepGeneralize" moduleName="wer.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-Unified-Telemetry-Client" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x3400"></sysprepOrder>
+<sysprepModule methodName="UtcSysprepGeneralize" moduleName="diagtrack.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-ReFS-Sysprep" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x3f00"></sysprepOrder>
+<sysprepModule methodName="Sysprep_Generalize_ReFS" moduleName="$(runtime.system32)\sprefs.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-NetworkProfile" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x2100"></sysprepOrder>
+<sysprepModule methodName="NetworkListManager_Generalize" moduleName="$(runtime.system32)\nlmsprep.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-TerminalServices-LocalSessionManager" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0D00"></sysprepOrder>
+<sysprepModule methodName="LSMSysPrepBackup" moduleName="$(runtime.system32)\setup\tssysprep.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-CoreSystem-InitMachineConfig" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x3800"></sysprepOrder>
+<registryActions>
+<setValue name="Sequence" path="HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\InitialMachineConfig" type="REG_DWORD" value="1"></setValue></registryActions></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-DHCP-Client-Dll" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x1400"></sysprepOrder>
+<sysprepModule methodName="DhcpClient_Generalize" moduleName="$(runtime.system32)\dhcpcsvc.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-PnpSysprep" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0500"></sysprepOrder>
+<sysprepModule methodName="Sysprep_Generalize_Pnp" moduleName="$(runtime.system32)\sppnp.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-Spaceport" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x2d00"></sysprepOrder>
+<registryActions>
+<deleteValue name="ControlId" path="HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\spaceport\Parameters"></deleteValue>
+<deleteValue name="PrimordialId" path="HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\spaceport\Parameters"></deleteValue></registryActions></imaging></sysprepInformation>

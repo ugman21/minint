@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v3" manifestVersion="1.0" copyright="Copyright (c) Microsoft Corporation. All Rights Reserved.">
+  <assemblyIdentity name="Microsoft-Windows-Common-Drivers-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+  <package identifier="Microsoft-Windows-Common-Drivers" releaseType="Feature Pack">
+    <update name="0e020e429a6271bbf5c81e02e3ae3608">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-Windows-Common-Drivers-merged-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+    <update name="a607c9f79e8ba39c75b90dd949ed012c">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="HyperV-Storage-VHD-Drivers-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+    <update name="abb1d9dd000b9798c5cd4c00196f90ba">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-OneCore-Netloopback-Driver-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+    <update name="4c8defce4bf5f858ad6f1d76f30958d3">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-Windows-Common-Drivers-Package-windows-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+    <update name="4f8f1b56e131d79bfcb1d3698fedc4ee">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-Windows-Kernel-Package-Acpi-Pci-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+    <update name="08c47d3e09eab8e8dec22436223c48a6">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-Windows-Kernel-Package-AcpiEx-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+    <update name="e0dd21cc77c1ce356a5b23e7f1a93436">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="Microsoft-Windows-PDC-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+    <update name="402cb3c3ba105ad27e6c3b9c49db68c3">
+      <package contained="false" integrate="hidden">
+        <assemblyIdentity name="VPN-Common-Drivers-Package" version="10.0.26100.1" processorArchitecture="amd64" language="neutral" buildType="release" publicKeyToken="31bf3856ad364e35" />
+      </package>
+    </update>
+  </package>
+</assembly>

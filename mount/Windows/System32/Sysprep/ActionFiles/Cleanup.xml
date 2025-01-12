@@ -1,0 +1,14 @@
+<sysprepInformation><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-Cryptography" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="wow64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0F00"></sysprepOrder>
+<sysprepModule methodName="CryptoSysPrep_Clean" moduleName="$(runtime.windows)\system32\capisp.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-Cryptography" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0F00"></sysprepOrder>
+<sysprepModule methodName="CryptoSysPrep_Clean" moduleName="$(runtime.windows)\system32\capisp.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-ErrorReportingCore" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="wow64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0A00"></sysprepOrder>
+<sysprepModule methodName="WerSysprepCleanup" moduleName="wer.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-ErrorReportingCore" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0A00"></sysprepOrder>
+<sysprepModule methodName="WerSysprepCleanup" moduleName="wer.dll"></sysprepModule></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-UXInit" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x1000"></sysprepOrder>
+<fileActions>
+<deleteFile path="$(runtime.windows)\Resources\Themes\aero\VSCache\*"></deleteFile></fileActions></imaging><imaging exclude=""><assemblyIdentity name="Microsoft-Windows-EventLog" version="10.0.26100.1" publicKeyToken="31bf3856ad364e35" processorArchitecture="amd64" versionScope="NonSxS"></assemblyIdentity>
+<sysprepOrder order="0x0400"></sysprepOrder>
+<sysprepModule methodName="EvtIntSysprepCleanup" moduleName="$(runtime.system32)\wevtapi.dll"></sysprepModule></imaging></sysprepInformation>
