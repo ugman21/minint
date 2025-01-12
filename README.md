@@ -2,4 +2,4 @@
 
 Modification for Windows PE
 
-(this is replacing Styphoonm)
+(use deploy branch and download iso to run)
