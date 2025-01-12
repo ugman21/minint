@@ -1,4 +1,4 @@
-/* MINT.EXE - Located in X:\MiniNT\mint.exe OR X:\Windows\System32\t1launcher.exe (BETA & ALPHA)
+/* MINT.EXE - Located in X:\MiniNT\mint.exe
 * 
 * 
 *                       MiniNT Stage 2 Session Manager
@@ -37,6 +37,7 @@ std::vector<HWND> childWindows;                 // list of child windows
 std::wstring g_wndLoc;                        // Run dialog cmd write LOCATION
 std::wstring g_wndName;                        // Run dialog cmd write NAME
 BOOL g_grabWnd = false;
+BOOL debug = true;
 
 // Child Window Variables 
 HWND runDialog; // PLACEHOLDER
@@ -57,6 +58,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
+
+    if (debug) {
+        AllocConsole();
+
+        FILE* stream;
+        freopen_s(&stream, "CONOUT$", "w", stdout);
+        freopen_s(&stream, "CONOUT$", "w", stderr);
+        //printf("Hello console on\n");
+    }
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -80,6 +90,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             DispatchMessage(&msg);
         }
     }
+
+
 
     return (int) msg.wParam;
 }
@@ -216,6 +228,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 ShowWindow(hwndChild, SW_SHOWNORMAL);
                 UpdateWindow(hwndChild);
                 BringWindowToTop(hwndChild);
+                std::cout << "Dialog(" << hwndChild << ") Is open." << std::endl;
                 break;
             }
             case IDM_ABOUT: {// dialog boxes should only be used for errors.
@@ -227,6 +240,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     ShowWindow(abbBox, SW_SHOWNORMAL);
                     UpdateWindow(abbBox);
                 }
+                std::cout << "Dialog(" << abbBox << ") Is open." << std::endl;
                 break;
             }
             case ID_RUNPROGRAM: {
@@ -236,6 +250,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     SetParent(runDialog, hWnd);
                     ShowWindow(runDialog, SW_SHOW);
                 }
+                std::cout << "Dialog(" << runDialog << ") Is open." << std::endl;
                 break;
             }
             case IDM_EXIT: // End MiniNT Session
@@ -256,6 +271,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             EndPaint(hWnd, &ps);
             if (g_grabWnd) {
                 LaunchChildProcess(hWnd, g_wndLoc, g_wndName);
+                //OutputDebugStringW(g_wndLoc);
                 g_grabWnd = false;
             }
         }
@@ -350,41 +366,43 @@ INT_PTR CALLBACK RunDialog(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam
             if (wndLoc != NULL && wndName != NULL) {
                 // Allocate a buffer to store the text
                 const int bufferSize = 256;
-                char buffer[bufferSize];
+                char buffer1[bufferSize];
+                char buffer2[bufferSize];
 
                 // Get the text from the edit control
-                int length1 = GetWindowTextA(wndLoc, buffer, bufferSize);
-                int length2 = GetWindowTextA(wndName, buffer, bufferSize);
+                int length1 = GetWindowTextA(wndLoc, buffer1, bufferSize);
+                int length2 = GetWindowTextA(wndName, buffer2, bufferSize);
 
                 // Ensure there was some text
                 if (length1 > 0) {
                     // Null-terminate the buffer if the length is smaller than bufferSize
-                    buffer[length1] = '\0';
+                    buffer1[length1] = '\0';
 
                     // Push the buffer into a std::string
-                    std::string retrievedText(buffer);
+                    std::string retrievedText(buffer1);
                     g_wndLoc = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(retrievedText);
 
-                    OutputDebugStringA(buffer);
-                    
+                    std::cout << buffer1 << std::endl;
                 }
                 else {
-                    // Handle the case where no text was retrieved
+                    // Handle the case where no text was found
                     std::cout << "No text in the IDC_WNDLOC control." << std::endl;
+                    //std::cout << "debug test, hi console" << "\n";
                 }
                 Sleep(400);
                 if (length2 > 0) {
                     // Null-terminate the buffer if the length is smaller than bufferSize
-                    buffer[length2] = '\0';
+                    buffer2[length2] = '\0';
 
                     // Push the buffer into a std::string
-                    std::string retrievedText(buffer);
+                    std::string retrievedText(buffer2);
                     g_wndName = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(retrievedText);
 
                     // Output the retrieved text
-                    OutputDebugStringA(buffer);
-                    // start process
+                    std::cout << buffer2 << std::endl;
 
+                    // start process
+                    g_grabWnd = true;
                 }
                 else {
                     // Handle the case where no text was retrieved
@@ -394,7 +412,6 @@ INT_PTR CALLBACK RunDialog(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam
             else {
                 std::cout << "Could not find controls with IDs" << std::endl;
             }
-            g_grabWnd = true;
 
             // Close the dialog
             EndDialog(hwndDlg, IDOK);
@@ -454,6 +471,7 @@ void LaunchChildProcess(HWND hWnd, const std::wstring& appName, const std::wstri
         SetParent(hwndChild, hWnd);  // Embed the child window inside the parent window
         //childWindows.push_back(hwndChild); // Store the child window handle
         SetWindowPos(hwndChild, HWND_TOP, 0, 0, 400, 400, SWP_NOZORDER); // Position the window
+        std::cout << "Process(" << hwndChild << ") Is open" << std::endl;
     }
     else {
         std::wcerr << L"Failed to find child window: " << windowTitle << std::endl;
