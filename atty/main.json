@@ -1,0 +1,16 @@
+{
+  "av": 1,
+  "type": "child",
+  "cname": "JSNWND",
+  "name": "SymbolTest",
+  "rndval": null,
+  "size": {
+    "w": 230,
+    "h": 100
+  },
+  "list": [1, 0, 1],
+  "objects": {
+    "textObj": "USD",
+    "value": 42.99
+  }
+}
