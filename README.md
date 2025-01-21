@@ -1,5 +1,6 @@
 # MiniNT
 ![An image of MiniNT Build 4 (mint.exe) running in Virtual Box 7 in Experiment mode](https://github.com/user-attachments/assets/5572ae2a-3693-4ee8-b089-5d4bdd798010)
+"SymbolTest" is an ʌttysymbols example document.
 
 ## Project Info
 MiniNT (mint) is a Shell that runs on top of bare metal Windows NT (WinPE)
