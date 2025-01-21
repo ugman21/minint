@@ -1,0 +1,27 @@
+Atty Symbol for Mint Documentation
+
+On creation, two files are made:
+Main.json
+Apperance.json
+
+Main.json includes:
+
+av: Atty Symbol Version
+type: Window Style (Overlapped, Child)
+name: Window Title
+rndval: Placeholder
+size: Window Width & Height
+list: Objects in window (In order: Text, Controls, Special)
+objects: List, expanded.
+
+Apperance.json includes:
+
+av: Atty Symbol Version
+bg (BOOLEAN): Will the window have a background
+rgb: If bg is true, set values here for background colour.
+ctrlclr? (BOOLEAN): Will the controls have a colour? (Text colour for text controls, bg for rest.)
+objlist: Object list (same as main)
+objname: Names and colours for objects.
+
+Both files are packaged into a .atty file (custom zip)
+The name of the window will be the name of the file.

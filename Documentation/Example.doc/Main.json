@@ -1,0 +1,15 @@
+{
+  "av": 0,
+  "type": "child",
+  "name": "SymbolTest",
+  "rndval": null,
+  "size": {
+    "w": 400
+    "h": 600
+  },
+  "list": [1, 0, 1],
+  "objects": {
+    "textObj": "USD",
+    "value": 42.99
+  }
+}

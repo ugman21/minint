@@ -15,18 +15,24 @@
 * 
 * 
 * Developed and Distributed by Cooper Greene (cgree)
+* JSON Addition developed by nlohmann
 */
 
 #include "framework.h"
 #include "Project1.h"
+#include <fstream>
 
 #include <string>
 #include <vector>
 #include <iostream>
 #include <locale>
 #include <codecvt>
+#include <json/json.h>
+#include <algorithm>
+
 
 #define MAX_LOADSTRING 100
+#define WM_NCACTIVATE 0x0086
 
 
 // Global Variables:
@@ -34,13 +40,15 @@ HINSTANCE hInst;                                // current instance
 WCHAR szTitle[MAX_LOADSTRING];                  // the title bar text
 WCHAR szWindowClass[MAX_LOADSTRING];            // the main window class name
 std::vector<HWND> childWindows;                 // list of child windows
-std::wstring g_wndLoc;                        // Run dialog cmd write LOCATION
-std::wstring g_wndName;                        // Run dialog cmd write NAME
+std::wstring g_wndLoc;                          // Run dialog cmd write LOCATION
+std::wstring g_wndName;                         // Run dialog cmd write NAME
+std::vector<std::wstring> a_wndClasses;         // List of Json Files
 BOOL g_grabWnd = false;
-BOOL debug = true;
+BOOL debug = false;
+int wndc = 0;
 
 // Child Window Variables 
-HWND runDialog; // PLACEHOLDER
+HWND runDialog; // PLACEHOLDER=
 
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -50,6 +58,13 @@ INT_PTR CALLBACK    ChildWindowProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPAR
 INT_PTR CALLBACK    ChildDialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
 INT_PTR CALLBACK    RunDialog(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam);
 void                LaunchChildProcess(HWND hWnd, const std::wstring& appName, const std::wstring& windowTitle); // win32 processes
+LRESULT CALLBACK ChildWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
+// Json Variables
+
+Json::Value actualJson;
+Json::Reader reader;
+Json::FastWriter fastWriter;
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_opt_ HINSTANCE hPrevInstance,
@@ -66,12 +81,16 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         freopen_s(&stream, "CONOUT$", "w", stdout);
         freopen_s(&stream, "CONOUT$", "w", stderr);
         //printf("Hello console on\n");
+        // tst
+        
     }
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_PROJECT1, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
+
+    printf("DEBUG - Distrubuted and Created by Actium\n");
 
     // Perform application initialization:
     if (!InitInstance (hInstance, nCmdShow))
@@ -82,6 +101,42 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_PROJECT1));
 
     MSG msg;
+    system("cls");
+    std::cout << "MiniNT WM (mint) - Custom Shell for Windows PE." << std::endl;
+
+    std::ifstream file("X:\\atty\\main.json"); // example file
+
+    reader.parse(file, actualJson);
+
+    //std::cout << "Total data in main:\n" << actualJson << std::endl;
+    std::cout << "Atty Symbols " << actualJson["av"] << " - Custom child windows with JSON." << std::endl << std::endl;
+    //std::cout << "rand> " << actualJson["rndval"] << std::endl;
+
+    // grab window name
+    std::string output = fastWriter.write(actualJson["name"]);
+    std::string holder = fastWriter.write(actualJson["cname"]);
+    std::cout << "Initialized: " << holder << std::endl;
+
+    std::wstring place = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(holder);
+
+    a_wndClasses.push_back(std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(output));
+
+    std::cout << output << std::endl; // output name (string not a_wndName)
+
+    const wchar_t* cname = place.c_str();
+
+    // Initialize child class
+    WNDCLASS wc = { 0 };
+    wc.lpfnWndProc = ChildWndProc;  // Pointer to the child window's procedure
+    wc.hInstance = hInst;
+    wc.lpszClassName = cname;
+    wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+    wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+
+    if (!RegisterClass(&wc)) {
+        MessageBox(NULL, TEXT("Failed to register class"), TEXT("Error"), MB_OK);
+        return -1;
+    }
 
     // Main message loop:
     while (GetMessage(&msg, NULL, 0, 0)) {
@@ -138,7 +193,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // Store instance handle in our global variable
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
@@ -148,13 +203,54 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
-   for (HWND hwndChild : childWindows) {
-       ShowWindow(hwndChild, SW_SHOWNORMAL);
-       UpdateWindow(hwndChild);
-   }
 
    return TRUE;
 }
+
+LRESULT CALLBACK ChildWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
+    switch (message) {
+    case WM_NCACTIVATE:
+    {
+        // wParam tells us whether we are active or inactive, but we are going to ignore
+        // that and always pass active down to DefWindowProc so it will draw us active.
+        DefWindowProc(hWnd, message, TRUE, lParam);
+        std::cout << wParam << std::endl;
+        std::cout << "a" << std::endl;
+        //return FALSE; // returning false here prevents actual deactivation
+        return TRUE; // return true allows deactivation (even though we draw as active)
+    }
+    case WM_PAINT: {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hWnd, &ps);
+        for (auto itr : actualJson["list"]) {
+            std::string name = itr.asString();
+            // ...
+            bool text = (std::find(itr.begin(), itr.end(), 1) != itr.end());
+        }
+        TextOut(hdc, 10, 10, TEXT("Hello from child!"), 18);
+        EndPaint(hWnd, &ps);
+        break;
+    }
+    case WM_LBUTTONDOWN:
+        //MessageBox(hWnd, TEXT("Child clicked!"), TEXT("Event"), MB_OK);
+        SetForegroundWindow(hWnd); // place
+        BringWindowToTop(hWnd);
+        RedrawWindow(hWnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+
+        std::cout << "should be foreground." << std::endl;
+        break;
+    case WM_DESTROY:
+        //PostQuitMessage(0);
+        break;
+    case WM_INITDIALOG:
+        childWindows.push_back(hWnd);
+        break;
+    default:
+        return DefWindowProc(hWnd, message, wParam, lParam);
+    }
+    return 0;
+}
+
 
 //
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
@@ -170,45 +266,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     switch (message)
     {
-    case WM_SETFOCUS: {
         if (!childWindows.empty()) {
             // Avoid taking focus if a child exists
             SetFocus(childWindows[0]);
+            std::cout << "a" << std::endl;
         }
-        break;
-    }
-    case WM_KEYDOWN: {
-        if (wParam == VK_F9) {
-            HWND currentFocus = GetFocus();
-            if (currentFocus == hWnd) {
-                OutputDebugString(L"hello");
-                if (!childWindows.empty()) {
-                    SetFocus(childWindows[0]);
-                    OutputDebugString(L"bring to last child");
-                }
-            }
-            else {
-                for (size_t i = 0; i < childWindows.size(); ++i) {
-                    if (currentFocus == childWindows[i]) {
-                        size_t nextIndex = (i + 1) % childWindows.size();
-                        SetFocus(childWindows[nextIndex]);
-                        OutputDebugString(L"bring to next child/parent");
-                        return 0;
-                    }
-                }
-            }
-            // Fallback: return focus to parent if none is found
-            SetFocus(hWnd);
-            OutputDebugString(L"fallback");
-            HWND focusedWnd = GetFocus();
-            if (focusedWnd) {
-                char wndClass[256];
-                GetClassNameA(focusedWnd, wndClass, sizeof(wndClass));
-                OutputDebugStringA(("Focused window: " + std::string(wndClass) + "\n").c_str());
-            }
-        }
-        break;
-    }
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -225,35 +287,68 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case ID_NEWWINDOW_APPLICATION2: {
                 HWND hwndChild = CreateDialog(hInst, MAKEINTRESOURCE(IDD_FORMVIEW), hWnd, ChildWindowProc);
-                ShowWindow(hwndChild, SW_SHOWNORMAL);
-                UpdateWindow(hwndChild);
-                BringWindowToTop(hwndChild);
+                if (hwndChild) {
+                    SetWindowLongPtr(hwndChild, GWL_STYLE, GetWindowLongPtr(hwndChild, GWL_STYLE) | WS_CHILD | WS_CLIPSIBLINGS);
+                    SetParent(hwndChild, hWnd);
+                    ShowWindow(hwndChild, SW_SHOW);
+                }
                 std::cout << "Dialog(" << hwndChild << ") Is open." << std::endl;
                 break;
             }
             case IDM_ABOUT: {// dialog boxes should only be used for errors.
                 //DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 HWND abbBox = CreateDialog(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, ChildDialogProc);
+
                 if (abbBox) {
-                    SetForegroundWindow(abbBox);  // Bring it to the foreground
-                    SetFocus(abbBox);            // Set keyboard focus
-                    ShowWindow(abbBox, SW_SHOWNORMAL);
-                    UpdateWindow(abbBox);
+                    SetWindowLongPtr(abbBox, GWL_STYLE, GetWindowLongPtr(abbBox, GWL_STYLE) | WS_CHILD | WS_CLIPSIBLINGS);
+                    SetParent(abbBox, hWnd);
+                    ShowWindow(abbBox, SW_SHOW);
                 }
                 std::cout << "Dialog(" << abbBox << ") Is open." << std::endl;
                 break;
             }
             case ID_RUNPROGRAM: {
-                runDialog = CreateDialog(GetModuleHandle(NULL), MAKEINTRESOURCE(IDD_RUNDIALOG), hWnd, RunDialog);
+                runDialog = CreateDialog(hInst, MAKEINTRESOURCE(IDD_RUNDIALOG), hWnd, RunDialog);
                 if (runDialog) {
-                    SetWindowLongPtr(runDialog, GWL_STYLE, GetWindowLongPtr(runDialog, GWL_STYLE) | WS_CHILD);
+                    SetWindowLongPtr(runDialog, GWL_STYLE, GetWindowLongPtr(runDialog, GWL_STYLE) | WS_CHILD | WS_CLIPSIBLINGS);
+                    EnableWindow(runDialog, TRUE);
                     SetParent(runDialog, hWnd);
                     ShowWindow(runDialog, SW_SHOW);
                 }
                 std::cout << "Dialog(" << runDialog << ") Is open." << std::endl;
+
+                std::string holder1 = fastWriter.write(actualJson["cname"]);
+                std::string holder2 = fastWriter.write(actualJson["name"]);
+
+
+
+                int w;
+                int h;
+
+                const Json::Value& array1 = actualJson["size"];
+                std::cout << array1 << std::endl;
+                w = array1["w"].asInt();
+                h = array1["h"].asInt();
+
+                std::wstring place = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(holder1);
+                std::wstring place2 = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(holder2);
+                const wchar_t* cname = place.c_str();
+                const wchar_t* cname2 = place2.c_str();
+
+                HWND hChildWnd = CreateWindow(
+                    cname,  // Class name
+                    cname2,      // Window title (can be empty for a pure child)
+                    WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WM_NCACTIVATE | WS_CHILD | WS_VISIBLE | WS_CLIPSIBLINGS,     // Styles (always include WS_CHILD)
+                    10, 10,                    // X, Y position relative to parent
+                    w, h,                  // Width and height
+                    hWnd,                // Handle to parent window
+                    NULL,                      // No menu for child windows
+                    hInst,                 // Application instance
+                    NULL                       // No additional parameters
+                );
                 break;
             }
-            case IDM_EXIT: // End MiniNT Session
+            case IDM_EXIT: // End Mint
                 MessageBox(hWnd, L"This will end your Windows Session.", L"End Session", MB_OK | MB_ICONQUESTION);
                 DestroyWindow(hWnd);
                 break;
@@ -290,6 +385,16 @@ INT_PTR CALLBACK ChildWindowProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM 
 {
     switch (uMsg)
     {
+    case WM_LBUTTONDOWN:
+        //MessageBox(hWnd, TEXT("Child clicked!"), TEXT("Event"), MB_OK);
+        SetForegroundWindow(hwndDlg); // place
+        BringWindowToTop(hwndDlg);
+        RedrawWindow(hwndDlg, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+
+        SetForegroundWindow(hwndDlg); // place
+        BringWindowToTop(hwndDlg);
+        std::cout << "should be foreground." << std::endl;
+        break;
     case WM_INITDIALOG:
         childWindows.push_back(hwndDlg);
         return TRUE;  // Initialization code here
@@ -304,7 +409,15 @@ INT_PTR CALLBACK ChildWindowProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM 
     case WM_CLOSE:
         EndDialog(hwndDlg, IDCANCEL);
         return true;
+    case WM_PAINT: {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hwndDlg, &ps);
+        // nill
+        EndPaint(hwndDlg, &ps);
+        break;
     }
+    }
+
 
     return FALSE;
 }
@@ -313,8 +426,16 @@ INT_PTR CALLBACK ChildDialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM 
 {
     switch (uMsg)
     {
+    case WM_LBUTTONDOWN:
+        //MessageBox(hWnd, TEXT("Child clicked!"), TEXT("Event"), MB_OK);
+        SetForegroundWindow(hwndDlg); // place
+        BringWindowToTop(hwndDlg);
+        RedrawWindow(hwndDlg, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+
+        std::cout << "should be foreground." << std::endl;
+        break;
     case WM_INITDIALOG:
-        return TRUE;  // Initialization code here
+        //return TRUE;  // Initialization code here
         childWindows.push_back(hwndDlg);
         //SetDlgItemText(hwndDlg, IDC_STATIC, L"the new text");
     case WM_COMMAND:
@@ -332,7 +453,13 @@ INT_PTR CALLBACK ChildDialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM 
             std::remove(childWindows.begin(), childWindows.end(), hwndDlg),
             childWindows.end()
         );
-
+    case WM_PAINT: {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hwndDlg, &ps);
+        // nill
+        EndPaint(hwndDlg, &ps);
+        break;
+    }
     }
     return FALSE;
 }
@@ -341,22 +468,26 @@ INT_PTR CALLBACK RunDialog(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam
 {
     switch (uMsg)
     {
-    /*case WM_MOUSEACTIVATE:
-        SetFocus(hwndDlg);
-        return MA_ACTIVATE;  // Allow activation on mouse click
     case WM_LBUTTONDOWN:
-        SetFocus(hwndDlg);
+        //MessageBox(hWnd, TEXT("Child clicked!"), TEXT("Event"), MB_OK);
+        SetForegroundWindow(hwndDlg); // place
+        BringWindowToTop(hwndDlg);
+        RedrawWindow(hwndDlg, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
+
+        std::cout << "should be foreground." << std::endl;
         break;
-    /*case WM_ACTIVATE: {
-        if (wParam != WA_INACTIVE) {
-            SetFocus(hwndDlg);
-        }
-        break;
-    }*/
+    case WM_NCACTIVATE:
+    {
+        // wParam tells us whether we are active or inactive, but we are going to ignore
+        // that and always pass active down to DefWindowProc so it will draw us active.
+        DefWindowProc(hwndDlg, uMsg, TRUE, lParam);
+        std::cout << "a" << std::endl;
+        //return FALSE; // returning false here prevents actual deactivation
+        return TRUE; // return true allows deactivation (even though we draw as active)
+    }
+    break;
     case WM_INITDIALOG:
         return TRUE;  // Initialization code here
-        childWindows.push_back(hwndDlg);
-        //SetDlgItemText(hwndDlg, IDC_STATIC, L"the new text");
     case WM_COMMAND: {
         // Check if the button (with ID IDC_OK) was pressed
         if (LOWORD(wParam) == IDOK) {
@@ -423,7 +554,15 @@ INT_PTR CALLBACK RunDialog(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam
     case WM_CLOSE:
         EndDialog(hwndDlg, IDCANCEL);
         return true;
+    case WM_PAINT: {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hwndDlg, &ps);
+        // nill
+        EndPaint(hwndDlg, &ps);
+        break;
     }
+    }
+
     return FALSE;
 }
 
