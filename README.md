@@ -30,5 +30,5 @@ very soon, this will change.
 ## Available Versions:
 - Build 1 (Prototype)
 - Build 2 (Pre-Release)
-- ~~Build 3 (lost when building build 4)~~
+- ~~Build 3 (lost when building build 4)~~ available in deploy branch for now
 - Build 4 (Stable)
