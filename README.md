@@ -26,7 +26,6 @@ very soon, this will change.
 - [X] ʌttysymbols initial development (Atty0)
 - [ ] Custom controls for ʌttysymbols
 
-
 ## Available Versions:
 - Build 1 (Prototype)
 - Build 2 (Pre-Release)
