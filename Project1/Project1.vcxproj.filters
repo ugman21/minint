@@ -27,12 +27,18 @@
     <ClInclude Include="Project1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AttySymbols.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Project1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="D:\Downloads\jsoncpp-master\jsoncpp-master\dist\jsoncpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AttySymbols.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

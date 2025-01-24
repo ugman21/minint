@@ -13,3 +13,10 @@
 #include <malloc.h>
 #include <memory.h>
 #include <tchar.h>
+#include <string>
+#include <vector>
+#include <iostream>
+#include <locale>
+#include <codecvt>
+#include <json/json.h>
+#include <algorithm>
