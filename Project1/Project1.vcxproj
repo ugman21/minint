@@ -72,8 +72,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\cgree\source\repos\Project1\Project1\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\cgree\source\repos\Project1\Project1\dist\json;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)Project1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)Project1\dist\json;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>C:\Users\cgree\source\repos\Project1\Project1\include;$(IncludePath)</IncludePath>
@@ -114,13 +114,13 @@
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>C:\Users\cgree\source\repos\Project1\Project1\dist;C:\Users\cgree\source\repos\Project1\Project1\include;C:\Users\cgree\source\repos\Project1\Project1\dist\json;C:\Users\cgree\source\repos\Project1\Project1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Project1\dist;$(SolutionDir)Project1\include;C:\Users\cgree\source\repos\Project1\Project1\dist\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\cgree\source\repos\Project1\packages\jsoncpp.0.6.0.1\build\native\lib\x64\v110\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

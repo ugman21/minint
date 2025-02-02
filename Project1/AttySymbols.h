@@ -12,5 +12,5 @@ public:
     void do_something() {
         // test
     };
-    void loadAndDeploy(HINSTANCE hInst, HWND parentWindow, std::ifstream& file);
+    void loadAndDeploy(HINSTANCE hInst, HWND parentWindow, const char* ftype);
 };

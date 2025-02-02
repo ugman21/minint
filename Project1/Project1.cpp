@@ -19,7 +19,6 @@
 */
 
 #include "framework.h"
-#include "Project1.h"
 #include <fstream>
 
 #include <string>
@@ -89,8 +88,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDC_PROJECT1, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
-    printf("DEBUG - Distrubuted and Created by Cooper Greene\n");
-
     // Perform application initialization:
     if (!InitInstance (hInstance, nCmdShow))
     {
@@ -101,8 +98,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
     system("cls");
-    std::cout << "MiniNT WM (mint) - Custom Shell for Windows PE." << std::endl;
-    std::cout << "AttySymbols - Custom child windows with JSON." << std::endl << std::endl;
+    std::cout << "MiniNT WM (mint) " << MINTVER_MAJOR << "." << MINTVER_MINOR << "." << MINTVER_REVISION << " - Custom shell for Windows PE" << std::endl;
+    std::cout << "AttySymbols " << ATTYVER << " - Custom child windows with JSON." << std::endl << std::endl;
 
     // Main message loop:
     while (GetMessage(&msg, NULL, 0, 0)) {
@@ -243,7 +240,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
                 std::ifstream json("X:\\atty\\main.json");
 
-                atty.loadAndDeploy(hInst, hWnd, json);
+                atty.loadAndDeploy(hInst, hWnd, "C:\\atty\\main.json");
                 break;
             }
             case IDM_EXIT: // End Mint
@@ -279,6 +276,16 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 }
 
 
+//
+//  FUNCTION: ChildWindowProc(HWND, UINT, WPARAM, LPARAM)
+//
+//  PURPOSE: Processes messages for the dialog(std) window.
+//
+//  WM_COMMAND  - process the application menu
+//  WM_PAINT    - Paint the main window
+//  WM_DESTROY  - post a quit message and return
+//
+//
 INT_PTR CALLBACK ChildWindowProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg)
@@ -320,6 +327,17 @@ INT_PTR CALLBACK ChildWindowProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM 
     return FALSE;
 }
 
+
+//
+//  FUNCTION: ChildDialogProc(HWND, UINT, WPARAM, LPARAM)
+//
+//  PURPOSE: Processes messages for the dialog(param) window.
+//
+//  WM_COMMAND  - process the application menu
+//  WM_PAINT    - Paint the main window
+//  WM_DESTROY  - post a quit message and return
+//
+//
 INT_PTR CALLBACK ChildDialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
     switch (uMsg)

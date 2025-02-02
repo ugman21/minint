@@ -4,6 +4,31 @@ using namespace std;
 
 LRESULT AttySymbols::ChildWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    Json::Value actualJson;
+    Json::Reader reader;
+    Json::FastWriter fastWriter;
+
+    std::ifstream json("currentlyopen.txt");
+    std::string mystring;
+    getline(json, mystring);
+
+    std::wstring place = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(mystring);
+
+    //childWindows.push_back(std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(output));
+    char* outputString = new char[place.length() + 1];
+    size_t outputSize = place.length() + 1; // +1 for null terminator
+    outputString = new char[outputSize]; // we want this
+    size_t charsConverted = 0;
+    const wchar_t* inputW = place.c_str();
+    wcstombs_s(&charsConverted, outputString, outputSize, inputW, place.length());
+    std::ifstream njson(outputString);
+
+    if (njson.is_open()) {
+        // parse
+        reader.parse(njson, actualJson, false);
+    }
+    else { std::cout << "shit code mate" << std::endl; }
+
     switch (message) {
     case WM_NCACTIVATE:
     {
@@ -18,7 +43,25 @@ LRESULT AttySymbols::ChildWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
     case WM_PAINT: {
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
+        auto entriesArray = actualJson["list"];
+        auto objectsArray = actualJson["objects"];
+        std::cout << objectsArray << std::endl;
+        auto textObj = objectsArray[0];
+        //auto placeholder = objectsArray["1"];
+
+        //std::string sender = firstelem["sender"].asString();
+        //int i = std::stoi(sender);
+        std::cout << "list of objects:" << entriesArray << "\n";
+        std::cout << "text objects available:" << entriesArray[0] << "\n";
+        std::cout << "? objects available:" << entriesArray[1] << "\n";
+        std::cout << "? objects available:" << entriesArray[2] << "\n";
+        std::cout << "text object values: " << textObj["1"].asString() << std::endl;
+
+
+
+
         TextOut(hdc, 10, 10, TEXT("Hello from child!"), 18);
+        std::cout << actualJson["av"] << std::endl;
         EndPaint(hWnd, &ps);
         break;
     }
@@ -42,13 +85,22 @@ LRESULT AttySymbols::ChildWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
     return 0;
 }
 
-void AttySymbols::loadAndDeploy(HINSTANCE hInst, HWND parentWindow, std::ifstream& file)
+void AttySymbols::loadAndDeploy(HINSTANCE hInst, HWND parentWindow, const char* ftype)
 {
+    std::ifstream json(ftype);
+
     Json::Value actualJson;
     Json::Reader reader;
     Json::FastWriter fastWriter;
 
-    reader.parse(file, actualJson);
+    std::ofstream myfile;
+    myfile.open("currentlyopen.txt");
+    std::cout << myfile.is_open() << std::endl;
+    myfile << ftype;
+    myfile.close();
+
+
+    reader.parse(json, actualJson);
     std::string output = fastWriter.write(actualJson["name"]);
     std::string holder = fastWriter.write(actualJson["cname"]);
 
@@ -67,7 +119,8 @@ void AttySymbols::loadAndDeploy(HINSTANCE hInst, HWND parentWindow, std::ifstrea
     wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 
     if (!RegisterClass(&wc)) {
-        MessageBox(NULL, TEXT("Failed to register class"), TEXT("Error"), MB_OK);
+        //MessageBox(NULL, TEXT("Failed to register class"), TEXT("Error"), MB_OK);
+        std::cout << "Couldnt register, json could already be initialized?" << std::endl;
         //return 1;
     }
 
