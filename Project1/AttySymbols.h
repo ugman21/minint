@@ -13,4 +13,5 @@ public:
         // test
     };
     void loadAndDeploy(HINSTANCE hInst, HWND parentWindow, const char* ftype);
+
 };

@@ -1,6 +1,11 @@
 #include "AttySymbols.h"
 
 using namespace std;
+#include <algorithm>
+#include <array>
+#include <iostream>
+#include <iterator>
+#include <string>
 
 LRESULT AttySymbols::ChildWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -44,23 +49,59 @@ LRESULT AttySymbols::ChildWndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
         auto entriesArray = actualJson["list"];
-        auto objectsArray = actualJson["objects"];
+        auto& objectsArray = actualJson["objects"];
         std::cout << objectsArray << std::endl;
         auto textObj = objectsArray[0];
+        std::vector<Json::Value> doc;
+
+        const Json::Value in = actualJson["objects"][0];
+
+        bool xys = false;
+        int d = entriesArray[0].asInt();
+        d++;
+        for (size_t i = 0; i < d; i++) {
+            std::string s = std::to_string(i);
+            //Sleep(3);
+            if (i == d) {
+                // halt
+            }
+            else {
+                std::string output = fastWriter.write(textObj[s]);
+
+                std::wstring place = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(output);
+
+                const wchar_t* cname = place.c_str();
+                if (d > 2) {
+                    if (i == 1) {
+                        TextOut(hdc, 10, 10, cname, output.size());
+                        output.clear();
+                        place.clear();
+                        xys = true;
+                    }
+                    else {
+                        TextOut(hdc, 40, 40, cname, output.size());
+                        output.clear();
+                        place.clear();
+                    }
+                }
+                
+            }
+            //cout << in[s] << "\n";
+
+        }
         //auto placeholder = objectsArray["1"];
 
         //std::string sender = firstelem["sender"].asString();
         //int i = std::stoi(sender);
-        std::cout << "list of objects:" << entriesArray << "\n";
-        std::cout << "text objects available:" << entriesArray[0] << "\n";
-        std::cout << "? objects available:" << entriesArray[1] << "\n";
-        std::cout << "? objects available:" << entriesArray[2] << "\n";
-        std::cout << "text object values: " << textObj["1"].asString() << std::endl;
 
 
+        std::string output = fastWriter.write(textObj["1"]);
 
+        std::wstring place = std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(output);
 
-        TextOut(hdc, 10, 10, TEXT("Hello from child!"), 18);
+        const wchar_t* cname = place.c_str();
+
+        TextOut(hdc, 10, 10, cname, output.size());
         std::cout << actualJson["av"] << std::endl;
         EndPaint(hWnd, &ps);
         break;

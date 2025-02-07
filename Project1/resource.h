@@ -27,6 +27,7 @@
 #define ID_NEWWINDOW_NOTEPAD            32777
 #define ID_NEWWINDOW_RUN                32778
 #define ID_RUNPROGRAM                   32779
+#define ID_ATTYSYMBOL_EXAMPLE           32780
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -35,7 +36,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        130
-#define _APS_NEXT_COMMAND_VALUE         32780
+#define _APS_NEXT_COMMAND_VALUE         32781
 #define _APS_NEXT_CONTROL_VALUE         1005
 #define _APS_NEXT_SYMED_VALUE           110
 #endif

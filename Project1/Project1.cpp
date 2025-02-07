@@ -235,11 +235,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                     ShowWindow(runDialog, SW_SHOW);
                 }
                 std::cout << "Dialog(" << runDialog << ") Is open." << std::endl;
-
+                break;
+            }
+            case ID_ATTYSYMBOL_EXAMPLE: {
                 AttySymbols atty;
-
-                std::ifstream json("X:\\atty\\main.json");
-
                 atty.loadAndDeploy(hInst, hWnd, "C:\\atty\\main.json");
                 break;
             }
