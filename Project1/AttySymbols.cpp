@@ -186,7 +186,7 @@ void AttySymbols::pushText(HDC hdc, Json::Value mainJson, Json::Value apperanceJ
         std::string s = std::to_string(i);
         //Sleep(3);
         if (i == d) {
-            // halt
+            
         }
         else {
             std::string output = fastWriter.write(textObj[s]);
