@@ -10,6 +10,6 @@
 // Version Numbers
 #define MINTVER_MAJOR 0
 #define MINTVER_MINOR 4
-#define MINTVER_REVISION 1
+#define MINTVER_REVISION 2
 
 #define ATTYVER 1

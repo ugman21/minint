@@ -239,7 +239,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
             case ID_ATTYSYMBOL_EXAMPLE: {
                 AttySymbols atty;
-                atty.loadAndDeploy(hInst, hWnd, "C:\\atty\\main.json");
+                atty.loadAndDeploy(hInst, hWnd, "C:\\atty"); // X:\AttyPrograms\example
                 break;
             }
             case IDM_EXIT: // End Mint

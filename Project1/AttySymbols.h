@@ -13,5 +13,6 @@ public:
         // test
     };
     void loadAndDeploy(HINSTANCE hInst, HWND parentWindow, const char* ftype);
+    void pushText(HDC hdc, Json::Value mainJson, Json::Value apperanceJson, Json::FastWriter fastWriter);
 
 };
